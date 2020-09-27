@@ -54,6 +54,10 @@ class GameTrainer:
             done = False
             
             while not done: 
+                if(render == True):
+                    self.env.render()
+                    time.sleep(0.25)
+                
                 if(random.uniform(0, 1) < self.epsilon):
                     action = self.env.action_space.sample()
                 else:
@@ -110,9 +114,9 @@ class GameTrainer:
 # Code Example Usage #######
 ############################
 
-gt = GameTrainer()
+gt = GameTrainer(alpha = 0.1, gamma = 0.6, epsilon = 0.1)
 #gt.displayRandomGameCartTaxi()
-gt.train(n_epochs = 10000, render = False)
+gt.train(n_epochs = 10000, render = True)
 gt.test()
 
 
